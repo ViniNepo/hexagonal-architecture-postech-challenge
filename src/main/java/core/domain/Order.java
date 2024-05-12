@@ -9,7 +9,7 @@ public class Order {
     private String ID;
     private String clientID;
     private OrderStatusEnum status;
-    private List<Product> products;
+    private List<ProductCart> products;
 
     public Order(String ID, String clientID, OrderStatusEnum status) {
         this.ID = ID;
@@ -41,11 +41,11 @@ public class Order {
         this.status = status;
     }
 
-    public List<Product> getProducts() {
+    public List<ProductCart> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<ProductCart> products) {
         this.products = products;
     }
 }

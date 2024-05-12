@@ -1,9 +1,12 @@
 package adapters.webservice;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
 public class Bootstrap {
-    // implementer o web service com springboot
 
     public static void main(String[] args) {
-
+        SpringApplication.run(Bootstrap.class, args);
     }
 }
