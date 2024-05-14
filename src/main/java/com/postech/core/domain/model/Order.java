@@ -1,6 +1,6 @@
-package core.domain;
+package com.postech.core.domain.model;
 
-import core.domain.enums.OrderStatusEnum;
+import com.postech.core.domain.enums.OrderStatusEnum;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package core.domain.enums;
+package com.postech.core.domain.enums;
 
 public enum ProductCategoryEnum {
     DISH,

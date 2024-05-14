@@ -1,4 +1,4 @@
-package core.domain;
+package com.postech.core.domain.model;
 
 public class Client {
     private String ID;

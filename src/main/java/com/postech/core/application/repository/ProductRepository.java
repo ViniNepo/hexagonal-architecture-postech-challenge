@@ -1,7 +1,7 @@
-package core.application.repository;
+package com.postech.core.application.repository;
 
-import core.domain.Product;
-import core.domain.enums.ProductCategoryEnum;
+import com.postech.core.domain.model.Product;
+import com.postech.core.domain.enums.ProductCategoryEnum;
 
 import java.util.List;
 

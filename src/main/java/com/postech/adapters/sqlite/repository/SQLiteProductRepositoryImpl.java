@@ -1,14 +1,12 @@
-package adapters.db;
+package com.postech.adapters.sqlite.repository;
 
-import core.application.repository.OrderRepository;
-import core.application.repository.ProductRepository;
-import core.domain.Order;
-import core.domain.Product;
-import core.domain.enums.ProductCategoryEnum;
+import com.postech.core.application.repository.ProductRepository;
+import com.postech.core.domain.model.Product;
+import com.postech.core.domain.enums.ProductCategoryEnum;
 
 import java.util.List;
 
-public class ProductRepositoryImpl implements ProductRepository {
+public class SQLiteProductRepositoryImpl implements ProductRepository {
     @Override
     public Product GetProductByID(String id) {
         return null;
