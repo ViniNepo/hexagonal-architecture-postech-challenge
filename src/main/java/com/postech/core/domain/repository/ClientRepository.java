@@ -1,4 +1,4 @@
-package com.postech.core.application.repository;
+package com.postech.core.domain.repository;
 
 import com.postech.core.domain.model.Client;
 

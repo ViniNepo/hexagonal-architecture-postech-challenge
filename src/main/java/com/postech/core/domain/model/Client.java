@@ -1,31 +1,26 @@
 package com.postech.core.domain.model;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "client")
 public class Client {
-    private String ID;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
+
     private String email;
+
     private String cpf;
 
-    public Client(String ID, String name, String email, String cpf) {
-        this.ID = ID;
-        this.name = name;
-        this.email = email;
-        this.cpf = cpf;
-    }
 
-    public String getID() {
-        return ID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
 }
