@@ -1,4 +1,4 @@
-package com.postech.core.domain.dto;
+package com.postech.adapter.driver.api.dto;
 
 import lombok.Data;
 

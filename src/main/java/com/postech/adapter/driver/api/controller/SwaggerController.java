@@ -1,6 +1,6 @@
 package com.postech.adapter.driver.api.controller;
 
-import com.postech.core.domain.dto.ErrorDTO;
+import com.postech.adapter.driver.api.dto.ErrorDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
