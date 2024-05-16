@@ -8,9 +8,9 @@ spring:
   application:
     name: cafeteria
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/cafeteria-management}
-    username: ${DB_USER:root}
-    password: ${DB_PASSWORD:root}
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/fiap}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
     driver-class-name: ${DB_DRIVER:org.postgresql.Driver}
   jpa:
     hibernate:
