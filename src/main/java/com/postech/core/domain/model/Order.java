@@ -21,8 +21,8 @@ public class Order {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
     @Enumerated(EnumType.STRING)
     private OrderStatusEnum status;

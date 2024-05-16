@@ -1,0 +1,10 @@
+version: '2.2'
+services:
+
+  db:
+    build:
+      context: "./docker/postgres"
+    restart: always
+    image: postgres
+    ports:
+      - 5432:5432
