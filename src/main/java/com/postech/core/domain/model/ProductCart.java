@@ -1,37 +1,27 @@
 package com.postech.core.domain.model;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "product_cart")
 public class ProductCart {
-    private String OrderID;
-    private String ProductID;
-    private int Quantity;
 
-    public ProductCart(String orderID, String productID, int quantity) {
-        OrderID = orderID;
-        ProductID = productID;
-        Quantity = quantity;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public String getOrderID() {
-        return OrderID;
-    }
+    @ManyToOne
+    private Order order;
 
-    public void setOrderID(String orderID) {
-        OrderID = orderID;
-    }
+    @ManyToOne
+    private Product product;
 
-    public String getProductID() {
-        return ProductID;
-    }
-
-    public void setProductID(String productID) {
-        ProductID = productID;
-    }
-
-    public int getQuantity() {
-        return Quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        Quantity = quantity;
-    }
+    private int quantidade;
 }

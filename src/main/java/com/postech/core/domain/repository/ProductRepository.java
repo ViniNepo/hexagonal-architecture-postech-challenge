@@ -1,11 +1,11 @@
-package com.postech.core.application.services;
+package com.postech.core.domain.repository;
 
 import com.postech.core.domain.model.Product;
 import com.postech.core.domain.enums.ProductCategoryEnum;
 
 import java.util.List;
 
-public interface ProductService {
+public interface ProductRepository {
     Product getProductByID(Long id);
     List<Product> getAllProducts();
     List<Product> getProductsByCategory(ProductCategoryEnum productCategory);

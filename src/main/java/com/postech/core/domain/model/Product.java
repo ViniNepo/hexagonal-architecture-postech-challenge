@@ -1,50 +1,33 @@
 package com.postech.core.domain.model;
 
 import com.postech.core.domain.enums.ProductCategoryEnum;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "product")
 public class Product {
 
-    private String ID;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
+
+    private String description;
+
+    @Enumerated(EnumType.STRING)
     private ProductCategoryEnum category;
-    private Float price;
 
-    public Product(String ID, String name, ProductCategoryEnum category, Float price) {
-        this.ID = ID;
-        this.name = name;
-        this.category = category;
-        this.price = price;
-    }
+    private Double price;
 
-    public String getID() {
-        return ID;
-    }
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public ProductCategoryEnum getCategory() {
-        return category;
-    }
-
-    public void setCategory(ProductCategoryEnum category) {
-        this.category = category;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
 }
