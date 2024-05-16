@@ -1,4 +1,4 @@
-package com.postech.adapter.service;
+package com.postech.core.application.services;
 
 import com.postech.core.domain.repository.ProductRepository;
 import com.postech.core.application.services.ProductService;

@@ -1,8 +1,8 @@
 package com.postech.adapter.configurations;
 
-import com.postech.adapter.service.ClientServiceImpl;
-import com.postech.adapter.service.ProductServiceImpl;
-import com.postech.adapter.service.OrderServiceImpl;
+import com.postech.core.application.services.ClientServiceImpl;
+import com.postech.core.application.services.ProductServiceImpl;
+import com.postech.core.application.services.OrderServiceImpl;
 import com.postech.core.domain.repository.ClientRepository;
 import com.postech.core.domain.repository.OrderRepository;
 import com.postech.core.domain.repository.ProductRepository;

@@ -27,10 +27,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatusEnum status;
 
-    @ManyToMany
-    @JoinTable(name = "order_products",
-            joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"))
-    private List<Product> products = new ArrayList<>();
+    @OneToMany(mappedBy = "order")
+    private List<ProductCart> productCarts = new ArrayList<>();
 
 }
