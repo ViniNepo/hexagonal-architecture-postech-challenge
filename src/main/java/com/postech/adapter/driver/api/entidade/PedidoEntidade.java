@@ -1,6 +1,6 @@
-package com.postech.core.domain.model;
+package com.postech.adapter.driver.api.entidade;
 
-import com.postech.core.domain.enums.OrderStatusEnum;
+import com.postech.core.domain.enums.EstadoPedidoEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,12 +9,13 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "customer_order")
-public class Order {
+@Table(name = "pedido")
+public class PedidoEntidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,12 +23,11 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    private ClienteEntidade cliente;
 
     @Enumerated(EnumType.STRING)
-    private OrderStatusEnum status;
+    private EstadoPedidoEnum estado;
 
-    @OneToMany(mappedBy = "order")
-    private List<ProductCart> productCarts = new ArrayList<>();
-
+    @OneToMany(mappedBy = "pedido")
+    private List<PedidoProdutoEntidade> pedidosProdutos = new ArrayList<>();
 }

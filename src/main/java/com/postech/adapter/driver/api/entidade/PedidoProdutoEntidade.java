@@ -1,5 +1,7 @@
-package com.postech.core.domain.model;
+package com.postech.adapter.driver.api.entidade;
 
+import com.postech.core.domain.model.Pedido;
+import com.postech.core.domain.model.Produto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,18 +12,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "product_cart")
-public class ProductCart {
+@Table(name = "pedido_produto")
+public class PedidoProdutoEntidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    private Order order;
+    private PedidoEntidade pedido;
 
     @ManyToOne
-    private Product product;
+    private ProdutoEntidade produto;
 
     private int quantidade;
 }

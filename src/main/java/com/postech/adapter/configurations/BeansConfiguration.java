@@ -1,14 +1,14 @@
 package com.postech.adapter.configurations;
 
-import com.postech.core.application.services.ClienteServiceImpl;
-import com.postech.core.application.services.ProductServiceImpl;
-import com.postech.core.application.services.OrderServiceImpl;
-import com.postech.core.domain.repository.ClienteRepository;
-import com.postech.core.domain.repository.OrderRepository;
-import com.postech.core.domain.repository.ProductRepository;
-import com.postech.core.application.services.ClienteService;
-import com.postech.core.application.services.OrderService;
-import com.postech.core.application.services.ProductService;
+import com.postech.core.application.services.ClienteServicoImpl;
+import com.postech.core.application.services.ProdutoServicoImpl;
+import com.postech.core.application.services.PedidoServicoImpl;
+import com.postech.core.domain.repository.ClienteRepositorio;
+import com.postech.core.domain.repository.PedidoRepositorio;
+import com.postech.core.domain.repository.ProdutoRepositorio;
+import com.postech.core.application.services.ClienteServico;
+import com.postech.core.application.services.PedidoServico;
+import com.postech.core.application.services.ProdutoServico;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,17 +19,17 @@ public class BeansConfiguration {
 
 
     @Bean
-    ProductService productService(final ProductRepository productRepository) {
-        return new ProductServiceImpl(productRepository);
+    ProdutoServico produtoServico(final ProdutoRepositorio produtoRepositorio) {
+        return new ProdutoServicoImpl(produtoRepositorio);
     }
 
     @Bean
-    ClienteService clienteService(final ClienteRepository clienteRepository) {
-        return new ClienteServiceImpl(clienteRepository);
+    ClienteServico clienteServico(final ClienteRepositorio clienteRepositorio) {
+        return new ClienteServicoImpl(clienteRepositorio);
     }
 
     @Bean
-    OrderService orderService(final OrderRepository orderRepository) {
-        return new OrderServiceImpl(orderRepository);
+    PedidoServico pedidoServico(final PedidoRepositorio pedidoRepositorio) {
+        return new PedidoServicoImpl(pedidoRepositorio);
     }
 }
