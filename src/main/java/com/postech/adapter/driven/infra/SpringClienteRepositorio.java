@@ -1,9 +1,9 @@
 package com.postech.adapter.driven.infra;
 
-import com.postech.core.domain.model.Order;
+import com.postech.adapter.driver.api.entidade.ClienteEntidade;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SpringOrderRepository extends JpaRepository<Order, Long> {
+public interface SpringClienteRepositorio extends JpaRepository<ClienteEntidade, Long> {
 }

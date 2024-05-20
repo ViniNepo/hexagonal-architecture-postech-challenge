@@ -1,18 +1,18 @@
 package com.postech.adapter.driver.api.controller;
 
-import com.postech.core.application.services.OrderService;
+import com.postech.core.application.services.PedidoServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/order")
-public class OrderController {
+@RequestMapping("/pedido")
+public class ControladorPedido {
 
-    private final OrderService orderService;
+    private final PedidoServico pedidoServico;
 
     @Autowired
-    public OrderController(OrderService orderService) {
-        this.orderService = orderService;
+    public ControladorPedido(PedidoServico pedidoServico) {
+        this.pedidoServico = pedidoServico;
     }
 }

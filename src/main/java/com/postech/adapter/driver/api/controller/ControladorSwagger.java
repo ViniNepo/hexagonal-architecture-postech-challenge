@@ -1,6 +1,6 @@
 package com.postech.adapter.driver.api.controller;
 
-import com.postech.adapter.driver.api.dto.ErrorDTO;
+import com.postech.adapter.driver.api.dto.ErroDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/swagger", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "swagger-example")
-public class SwaggerController {
+public class ControladorSwagger {
 
     //Swagger: http://localhost:8080/cafeteria/swagger-ui
     //Swagger yml: http://localhost:8080/cafeteria/api-docs
@@ -24,11 +24,11 @@ public class SwaggerController {
     @Operation(summary = "Test example", method = "GET", description = "This api is for example only")
     @ApiResponses(value = {
             @ApiResponse(description = "Successful Operation", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
-            @ApiResponse(responseCode = "400", description = "Error example", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class))),
+            @ApiResponse(responseCode = "400", description = "Error example", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroDTO.class))),
     })
     @GetMapping
     public ResponseEntity<?> errorTest() {
-        return ResponseEntity.badRequest().body(new ErrorDTO("400", "Error example"));
+        return ResponseEntity.badRequest().body(new ErroDTO("400", "Error example"));
     }
 
 }
