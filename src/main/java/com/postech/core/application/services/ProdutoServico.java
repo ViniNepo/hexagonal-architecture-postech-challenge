@@ -1,6 +1,5 @@
 package com.postech.core.application.services;
 
-import com.postech.adapter.driver.api.entidade.ProdutoEntidade;
 import com.postech.core.domain.model.Produto;
 import com.postech.core.domain.enums.CategoriaProdutoEnum;
 
@@ -11,6 +10,6 @@ public interface ProdutoServico {
     List<Produto> pegaTodosProdutos();
     List<Produto> pegaProdutosPorCategoria(CategoriaProdutoEnum categoriaProduto);
     Produto criaNovoProduto(Produto produto);
-    void atualizaProdutoPorId(Long id, Produto produto);
+    void atualizaProduto(Produto produto);
     void deletaProdutoPorId(Long id);
 }

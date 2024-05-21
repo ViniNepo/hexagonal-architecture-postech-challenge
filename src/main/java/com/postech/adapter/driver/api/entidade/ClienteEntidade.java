@@ -17,13 +17,10 @@ public class ClienteEntidade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     private String nome;
 
-    @NotBlank
     private String email;
 
-    @NotBlank
     private String cpf;
 
 }

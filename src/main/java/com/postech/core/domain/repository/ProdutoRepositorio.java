@@ -11,6 +11,7 @@ public interface ProdutoRepositorio {
     List<ProdutoEntidade> pegaTodosProdutos();
     List<ProdutoEntidade> pegaProdutosPorCategoria(CategoriaProdutoEnum produtoCategoria);
     ProdutoEntidade criaNovoProduto(ProdutoEntidade produto);
-    void atualizaProdutoPorId(Long id, ProdutoEntidade produto);
+    void atualizaProduto(ProdutoEntidade produto);
     void deletaProdutoPorId(Long id);
+    boolean existeProdutoPorId(Long id);
 }

@@ -2,6 +2,8 @@ package com.postech.core.application.services;
 
 import com.postech.adapter.driver.api.entidade.ProdutoEntidade;
 import com.postech.adapter.driver.api.mapper.MapeadorProduto;
+import com.postech.core.domain.base.DominioExcecao;
+import com.postech.core.domain.base.PedidoNaoEncontradoExececao;
 import com.postech.core.domain.repository.ProdutoRepositorio;
 import com.postech.core.domain.model.Produto;
 import com.postech.core.domain.enums.CategoriaProdutoEnum;
@@ -39,8 +41,12 @@ public class ProdutoServicoImpl implements ProdutoServico {
     }
 
     @Override
-    public void atualizaProdutoPorId(Long id, Produto produto) {
-        productRepository.atualizaProdutoPorId(id, MapeadorProduto.INSTANCIA.paraEntidade(produto));
+    public void atualizaProduto(Produto produto) {
+
+        if(!productRepository.existeProdutoPorId(produto.getId())){
+            throw new PedidoNaoEncontradoExececao("Produto informado não existe na nossa base de dados");
+        }
+        productRepository.atualizaProduto(MapeadorProduto.INSTANCIA.paraEntidade(produto));
     }
 
     @Override

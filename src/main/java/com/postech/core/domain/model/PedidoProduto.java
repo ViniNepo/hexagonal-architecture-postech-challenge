@@ -1,6 +1,8 @@
 package com.postech.core.domain.model;
 
-public class PedidoProduto {
+import com.postech.core.domain.base.AgregacaoInterface;
+
+public class PedidoProduto implements AgregacaoInterface {
 
     private Long id;
 

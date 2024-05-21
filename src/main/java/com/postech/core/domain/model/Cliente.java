@@ -1,7 +1,11 @@
 package com.postech.core.domain.model;
 
 
-public class Cliente {
+import com.postech.core.domain.base.AgregacaoInterface;
+import com.postech.core.domain.base.DominioExcecao;
+import com.postech.core.domain.base.PreocupacaoAssercao;
+
+public class Cliente implements AgregacaoInterface {
 
     private Long id;
 
@@ -11,13 +15,18 @@ public class Cliente {
 
     private String cpf;
 
-    public Cliente() {}
-
-    public Cliente(Long id, String nome, String email, String cpf) {
+    public Cliente(Long id, String nome, String email, String cpf) throws DominioExcecao {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
+
+        validaEntidade();
+    }
+
+    public void validaEntidade() throws DominioExcecao {
+        PreocupacaoAssercao.validaArgumentoNaoVazio(nome, "O nome não pode estar vazio!");
+        PreocupacaoAssercao.validaArgumentoNaoVazio(email, "O email não pode estar vazio!");
     }
 
     public Long getId() {

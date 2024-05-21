@@ -37,12 +37,16 @@ public class ProdutoRepositorioImpl implements ProdutoRepositorio {
     }
 
     @Override
-    public void atualizaProdutoPorId(Long id, ProdutoEntidade produtoEntidade) {
-
+    public void atualizaProduto(ProdutoEntidade produtoEntidade) {
+        springProdutoRepositorio.save(produtoEntidade);
     }
 
     @Override
     public void deletaProdutoPorId(Long id) {
 
+    }
+    @Override
+    public boolean existeProdutoPorId(Long id) {
+        return springProdutoRepositorio.existsById(id);
     }
 }

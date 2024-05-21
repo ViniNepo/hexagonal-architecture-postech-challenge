@@ -1,8 +1,11 @@
 package com.postech.core.domain.model;
 
+import com.postech.core.domain.base.AgregacaoInterface;
+import com.postech.core.domain.base.DominioExcecao;
+import com.postech.core.domain.base.PreocupacaoAssercao;
 import com.postech.core.domain.enums.CategoriaProdutoEnum;
 
-public class Produto {
+public class Produto implements AgregacaoInterface {
     private Long id;
 
     private String nome;
@@ -13,15 +16,20 @@ public class Produto {
 
     private Double preco;
 
-    public Produto() {
-    }
 
-    public Produto(Long id, String nome, String descricao, CategoriaProdutoEnum categoria, Double preco) {
+    public Produto(Long id, String nome, String descricao, CategoriaProdutoEnum categoria, Double preco) throws DominioExcecao {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.categoria = categoria;
         this.preco = preco;
+
+        validaEntidade();
+    }
+
+    public void validaEntidade() throws DominioExcecao {
+        PreocupacaoAssercao.validaArgumentoNaoVazio(nome, "O nome não pode estar vazio!");
+        PreocupacaoAssercao.validaArgumentoNaoVazio(descricao, "O email não pode estar vazio!");
     }
 
     public Long getId() {

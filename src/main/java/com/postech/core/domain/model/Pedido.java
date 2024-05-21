@@ -1,19 +1,17 @@
 package com.postech.core.domain.model;
 
+import com.postech.core.domain.base.AgregacaoInterface;
 import com.postech.core.domain.enums.EstadoPedidoEnum;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pedido {
+public class Pedido implements AgregacaoInterface {
 
     private Long id;
     private Cliente cliente;
     private EstadoPedidoEnum estado;
-    private List<PedidoProduto> pedidosProdutos = new ArrayList<>();
-
-    public Pedido() {
-    }
+    private List<PedidoProduto> pedidosProdutos;
 
     public Pedido(Long id, Cliente cliente, EstadoPedidoEnum estado, List<PedidoProduto> pedidosProdutos) {
         this.id = id;
@@ -51,6 +49,9 @@ public class Pedido {
     }
 
     public void adicionaPedidoProduto(PedidoProduto pedidoProduto){
+        if(pedidosProdutos == null){
+            pedidosProdutos = new ArrayList<>();
+        }
         pedidosProdutos.add(pedidoProduto);
     }
 }
