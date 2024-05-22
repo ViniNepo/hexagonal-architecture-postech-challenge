@@ -6,10 +6,7 @@ import com.postech.core.domain.model.Cliente;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/cliente")
@@ -26,6 +23,18 @@ public class ControladorCliente {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Cliente cadastrarCliente(@RequestBody Cliente cliente) {
         return clienteServico.cadastrarCliente(cliente);
+    }
+
+    @GetMapping(value = "pegarCliente", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Cliente buscarClientePorCPF(@RequestParam String cpf) {
+        return clienteServico.buscarClientePorCPF(cpf);
+    }
+
+    @GetMapping(value = "validarCliente", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Boolean validarCliente(@RequestParam String cpf) {
+        return clienteServico.validarCliente(cpf);
     }
 
 }
