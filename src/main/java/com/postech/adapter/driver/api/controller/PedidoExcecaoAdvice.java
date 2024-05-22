@@ -1,6 +1,5 @@
 package com.postech.adapter.driver.api.controller;
 
-import com.postech.core.domain.base.DominioExcecao;
 import com.postech.core.domain.base.PedidoException;
 import com.postech.core.domain.base.PedidoNaoEncontradoExececao;
 import org.springframework.http.HttpStatus;

@@ -24,12 +24,12 @@ public class PedidoServicoImpl implements PedidoServico {
     }
 
     @Override
-    public void atualizaPedidoEstadoPorId(Long id, EstadoPedidoEnum estado) {
+    public void atualizaEstadoPedidoPorId(Long id, EstadoPedidoEnum estado) {
         pedidoRepositorio.atualizaEstadoPedidoPorId(id, estado);
     }
 
     @Override
-    public EstadoPedidoEnum notificaPedidoEstado(Long id) {
+    public EstadoPedidoEnum notificaEstadoPedido(Long id) {
         return pedidoRepositorio.notificaPedidoEstado(id);
     }
 }
