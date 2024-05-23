@@ -8,12 +8,12 @@ import java.time.ZoneId;
 @Data
 public class ErroDTO {
 
-    private String estado;
+    private int status;
     private String erro;
     private LocalDateTime data;
 
-    public ErroDTO(String status, String error) {
-        this.estado = status;
+    public ErroDTO(int status, String error) {
+        this.status = status;
         this.erro = error;
         this.data = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
     }
