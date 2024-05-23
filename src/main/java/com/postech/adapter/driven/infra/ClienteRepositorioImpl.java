@@ -20,7 +20,9 @@ public class ClienteRepositorioImpl implements ClienteRepositorio {
 
     @Override
     public ClienteEntidade buscarClientePorCPF(String cpf) {
-        return springClienteRepositorio.getClienteEntidadeByCpf(cpf);
+        ClienteEntidade clienteEntidade = springClienteRepositorio.getClienteEntidadeByCpf(cpf).get();
+
+        return clienteEntidade;
     }
 
     @Override
