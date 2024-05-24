@@ -1,6 +1,5 @@
 package com.postech.core.application.services;
 
-import com.postech.adapter.driver.api.entidade.ClienteEntidade;
 import com.postech.core.domain.model.Cliente;
 
 public interface ClienteServico {

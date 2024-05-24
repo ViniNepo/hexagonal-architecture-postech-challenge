@@ -2,8 +2,8 @@ package com.postech.core.application.services;
 
 import com.postech.adapter.driver.api.entidade.ClienteEntidade;
 import com.postech.adapter.driver.api.mapper.MapeadorCliente;
-import com.postech.core.domain.repository.ClienteRepositorio;
 import com.postech.core.domain.model.Cliente;
+import com.postech.core.domain.repository.ClienteRepositorio;
 
 public class ClienteServicoImpl implements ClienteServico {
 
@@ -15,7 +15,8 @@ public class ClienteServicoImpl implements ClienteServico {
 
     @Override
     public Cliente buscarClientePorCPF(String cpf) {
-        return MapeadorCliente.INSTANCIA.paraDominio(clientRepository.buscarClientePorCPF(cpf));
+        ClienteEntidade clienteEntidade = clientRepository.buscarClientePorCPF(cpf);
+        return MapeadorCliente.INSTANCIA.paraDominio(clienteEntidade);
     }
 
     @Override
