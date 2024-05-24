@@ -28,7 +28,7 @@ public class ControladorSwagger {
     })
     @GetMapping
     public ResponseEntity<?> errorTest() {
-        return ResponseEntity.badRequest().body(new ErroDTO("400", "Error example"));
+        return ResponseEntity.badRequest().body(new ErroDTO(400, "Error example"));
     }
 
 }
