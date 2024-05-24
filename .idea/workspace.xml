@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c51c1f98-dd83-4627-bdd1-1f95a04373bf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/postech/adapter/driver/api/controller/ProdutoExcecaoAdvice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/postech/core/domain/base/ProdutoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/postech/core/domain/base/ProdutoNaoEncontradoExececao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/postech/adapter/driver/api/controller/ControladorCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/postech/adapter/driver/api/controller/ControladorCliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/postech/adapter/driver/api/controller/ControladorPedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/postech/adapter/driver/api/controller/ControladorPedido.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/postech/adapter/driver/api/controller/ControladorProduto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/postech/adapter/driver/api/controller/ControladorProduto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/postech/adapter/driver/api/controller/PedidoExcecaoAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/postech/adapter/driver/api/controller/PedidoExcecaoAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/postech/core/application/services/PedidoServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/postech/core/application/services/PedidoServico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/postech/core/application/services/PedidoServicoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/postech/core/application/services/PedidoServicoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/postech/core/application/services/ProdutoServicoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/postech/core/application/services/ProdutoServicoImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="alysson-ajustes" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,42 +41,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Bootstrap.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "alysson-ajustes",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Vini Bell/Downloads/demo",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "spring.configuration.checksum": "8166a3b86f0900873ec896d97ab36723",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Bootstrap.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;vini&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Vini Bell/Downloads/demo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;8166a3b86f0900873ec896d97ab36723&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.postech.core.domain.base" />
+      <recent name="com.postech.adapter.driver.api.controller" />
       <recent name="com.postech.adapters.webservice.service" />
       <recent name="com.postech.core.application.services" />
       <recent name="adapters.db" />
-      <recent name="core.application.repository" />
-      <recent name="core.domain.enums" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -154,6 +152,7 @@
       <workItem from="1715042861007" duration="5165000" />
       <workItem from="1715641833562" duration="7239000" />
       <workItem from="1715702661396" duration="3919000" />
+      <workItem from="1716407510705" duration="2088000" />
     </task>
     <servers />
   </component>
@@ -165,7 +164,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="vini" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
