@@ -40,7 +40,7 @@ public class ControladorCliente {
         return ResponseHandler.responseBuilder("Cliente cadastrado com sucesso", HttpStatus.OK, clienteServico.cadastrarCliente(cliente));
     }
 
-    @Operation(summary = "Buscar cliente", method = "POST", description = "Recurso para consultar cliente")
+    @Operation(summary = "Buscar cliente", method = "GET", description = "Recurso para consultar cliente")
     @ApiResponses(value = {
             @ApiResponse(description = "Cliente encontrado com sucesso", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Cliente.class))),
             @ApiResponse(description = "Erro ao consultar cliente", responseCode = "400",  content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
