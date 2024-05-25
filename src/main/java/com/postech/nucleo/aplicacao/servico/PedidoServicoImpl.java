@@ -37,7 +37,7 @@ public class PedidoServicoImpl implements PedidoServico {
         PedidoEntidade pedidoEntidade = pedidoRepositorio.pegaPedidoPorId(id);
 
         if(pedidoEntidade == null){
-            throw new PedidoNaoEncontradoExcecao("Pedido com o ID informado não foi encontrado em nossa base de dados");
+            throw new PedidoNaoEncontradoExcecao("Pedido com o ID informado não foi encontrado");
         }
 
         return MapeadorPedido.INSTANCIA.paraDto(MapeadorPedido.INSTANCIA.paraDominio(pedidoEntidade));
@@ -62,7 +62,9 @@ public class PedidoServicoImpl implements PedidoServico {
 
         pedidoEntidade.getPedidosProdutos().forEach(x -> x.setPedido(pedidoEntidade));
 
-        return MapeadorPedido.INSTANCIA.paraDto( MapeadorPedido.INSTANCIA.paraDominio(pedidoRepositorio.salvaPedido(pedidoEntidade)));
+        Pedido pedidoSalvo = MapeadorPedido.INSTANCIA.paraDominio(pedidoRepositorio.salvaPedido(pedidoEntidade));
+
+        return MapeadorPedido.INSTANCIA.paraDto(pedidoSalvo);
     }
 
     @Override
@@ -110,7 +112,7 @@ public class PedidoServicoImpl implements PedidoServico {
         List<PedidoEntidade> pedidoEntidades = pedidoRepositorio.pegaTodosProdutos();
 
         if(pedidoEntidades.isEmpty()){
-            throw new PedidoNaoEncontradoExcecao("Nenhum pedido foi encontrado na nossa base de dados");
+            throw new PedidoNaoEncontradoExcecao("Nenhum pedido foi encontrado");
         }
 
         List<Pedido> pedidos = MapeadorPedido.INSTANCIA.paraDominioListaEntidade(pedidoEntidades);

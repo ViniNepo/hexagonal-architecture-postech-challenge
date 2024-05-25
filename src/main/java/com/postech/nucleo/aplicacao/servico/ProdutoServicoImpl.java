@@ -23,7 +23,7 @@ public class ProdutoServicoImpl implements ProdutoServico {
         ProdutoEntidade produtoEntidade = productRepository.pegaProdutoPorId(id);
 
         if(produtoEntidade == null){
-            throw new ProdutoNaoEncontradoExcecao("Produto informado não existe na nossa base de dados");
+            throw new ProdutoNaoEncontradoExcecao("Produto informado não existe");
         }
         Produto produto = MapeadorProduto.INSTANCIA.paraDominio(produtoEntidade);
         return MapeadorProduto.INSTANCIA.paraDTO(produto);

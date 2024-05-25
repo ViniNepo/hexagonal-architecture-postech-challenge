@@ -27,7 +27,7 @@ public class ClienteRepositorioImpl implements ClienteRepositorio {
     @Override
     public ClienteEntidade buscarClientePorCPF(String cpf) {
         return springClienteRepositorio.getClienteEntidadeByCpf(cpf)
-                .orElseThrow(() -> new ClienteNaoEncontradoExcecao("Cliente com cpf informado não encontrado em nossa base de dados"));
+                .orElseThrow(() -> new ClienteNaoEncontradoExcecao("Cliente com cpf informado não encontrado"));
     }
 
 }

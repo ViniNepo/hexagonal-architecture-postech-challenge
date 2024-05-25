@@ -46,8 +46,9 @@ public class ControladorCliente {
             @ApiResponse(description = "Erro ao consultar cliente", responseCode = "400",  content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
             @ApiResponse(description = "Cliente não foi encontrado", responseCode = "404",  content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
     })
-    @PostMapping(value = "/consultarClientePorCPF", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/consultarClientePorCPF", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> consultarCliente(@RequestParam(value = "cpf") String cpf) {
         return ResponseHandler.responseBuilder("Cliente encontrado com sucesso", HttpStatus.OK, clienteServico.buscarClientePorCPF(cpf));
     }
+
 }

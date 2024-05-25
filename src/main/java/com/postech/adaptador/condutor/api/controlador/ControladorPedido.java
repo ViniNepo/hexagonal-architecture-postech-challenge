@@ -49,7 +49,7 @@ public class ControladorPedido {
 
     @GetMapping(value = "pegarTodosPedidos", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> pegarTodosPedidos() {
-        return ResponseHandler.responseBuilder("Pedidos encontrados em nossa base de dados", HttpStatus.OK, pedidoServico.pegaTodosProdutos());
+        return ResponseHandler.responseBuilder("Pedidos encontrados", HttpStatus.OK, pedidoServico.pegaTodosProdutos());
     }
 
     @DeleteMapping("/{id}/deletarPedido")
