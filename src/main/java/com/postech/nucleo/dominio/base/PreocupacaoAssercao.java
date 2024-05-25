@@ -31,6 +31,12 @@ public class PreocupacaoAssercao {
         }
     }
 
+    public static void validaValorPositivo(Double valor,String mensagem){
+        if(valor < 0.0){
+            throw new DominioExcecao(mensagem);
+        }
+    }
+
     /**
      * Validação de string se está vazia
      * @param stringValor

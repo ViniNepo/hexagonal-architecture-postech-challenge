@@ -20,6 +20,7 @@ public class Cliente implements AgregacaoInterface {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
+        validaEntidade();
     }
 
     public void validaEntidade() throws DominioExcecao {

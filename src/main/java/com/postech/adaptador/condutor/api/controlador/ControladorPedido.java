@@ -33,7 +33,6 @@ public class ControladorPedido {
     @PutMapping(value = "/{id}/atualizarEstadoPedido", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> atualizarEstadoPedidoPorId(@PathVariable Long id, @RequestParam EstadoPedidoEnum estado) {
         return ResponseHandler.responseBuilder("Estado do pedido atualizado com sucesso", HttpStatus.OK, pedidoServico.atualizaEstadoPedidoPorId(id, estado));
-
     }
 
     @GetMapping(value = "/{id}/notificarEstadoPedido", produces = MediaType.APPLICATION_JSON_VALUE)

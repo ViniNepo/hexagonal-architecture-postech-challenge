@@ -20,6 +20,7 @@ public class Pedido implements AgregacaoInterface {
         this.cliente = cliente;
         this.estado = estado;
         this.pedidosProdutos = pedidosProdutos;
+        validaEntidade();
     }
     public void validaEntidade() throws DominioExcecao {
         PreocupacaoAssercao.validaArgumentoNaoNulo(estado, "O estado do pedido não pode estar vazio!");
