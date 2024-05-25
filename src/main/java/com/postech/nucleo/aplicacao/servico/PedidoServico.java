@@ -10,6 +10,6 @@ public interface PedidoServico {
     PedidoDTO criaPedido(PedidoDTO pedidodto);
     PedidoDTO atualizaEstadoPedidoPorId(Long id, EstadoPedidoEnum estado);
     EstadoPedidoEnum notificaEstadoPedido(Long id);
-
     List<PedidoDTO> pegaTodosProdutos();
+    void deletarPedido(Long id);
 }

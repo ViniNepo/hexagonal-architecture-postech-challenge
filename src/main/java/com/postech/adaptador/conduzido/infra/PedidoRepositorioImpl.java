@@ -26,8 +26,8 @@ public class PedidoRepositorioImpl implements PedidoRepositorio {
     }
 
     @Override
-    public void deletaPedido(PedidoEntidade pedidoEntidade) {
-        springPedidoRepositorio.delete(pedidoEntidade);
+    public void deletaPedido(Long id) {
+        springPedidoRepositorio.deleteById(id);
     }
 
     @Override
