@@ -11,5 +11,7 @@ public interface PedidoServico {
     PedidoDTO atualizaEstadoPedidoPorId(Long id, EstadoPedidoEnum estado);
     EstadoPedidoEnum notificaEstadoPedido(Long id);
     List<PedidoDTO> pegaTodosProdutos();
+    void fakeCheckout(Long id);
+
     void deletarPedido(Long id);
 }

@@ -72,7 +72,7 @@ public class PedidoServicoImpl implements PedidoServico {
         PedidoDTO pedidoDTO = this.pegaPedidoPorId(id);
 
         if(!isTransicaoEstadoValida(pedidoDTO.getEstado(), estado)){
-            throw new PedidoEstadoExcecao("Não foi realizar a transição de estado para o novo estado informado");
+            throw new PedidoEstadoExcecao("Não foi possivel realizar a transição de estado para o novo estado informado");
         }
 
         pedidoDTO.setEstado(estado);
@@ -119,6 +119,12 @@ public class PedidoServicoImpl implements PedidoServico {
 
 
         return MapeadorPedido.INSTANCIA.paraDTOLista(pedidos);
+    }
+
+    @Override
+    public void fakeCheckout(Long id) {
+        this.atualizaEstadoPedidoPorId(id, EstadoPedidoEnum.PAGO);
+        this.atualizaEstadoPedidoPorId(id, EstadoPedidoEnum.RECEBIDO);
     }
 
     @Override
