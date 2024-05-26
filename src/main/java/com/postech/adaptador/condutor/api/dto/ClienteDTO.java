@@ -19,6 +19,5 @@ public class ClienteDTO {
     @NotBlank(message = "O email não pode estar vazio!")
     private String email;
 
-    @NotBlank
     private CpfDTO cpf;
 }
