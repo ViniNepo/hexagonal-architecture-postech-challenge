@@ -1,9 +1,10 @@
 package com.postech.nucleo.dominio.modelo;
 
-
 import com.postech.nucleo.dominio.base.AgregacaoInterface;
 import com.postech.nucleo.dominio.base.DominioExcecao;
 import com.postech.nucleo.dominio.base.PreocupacaoAssercao;
+
+import java.util.Optional;
 
 public class Cliente implements AgregacaoInterface {
 
@@ -13,14 +14,16 @@ public class Cliente implements AgregacaoInterface {
 
     private String email;
 
-    private String cpf;
+    private CPF cpf;
 
-    public Cliente(Long id, String nome, String email, String cpf) throws DominioExcecao {
+    public Cliente(Long id, String nome, String email, CPF cpf) throws DominioExcecao {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
+
         validaEntidade();
+        cpf.validar();
     }
 
     public void validaEntidade() throws DominioExcecao {
@@ -52,11 +55,21 @@ public class Cliente implements AgregacaoInterface {
         this.email = email;
     }
 
-    public String getCpf() {
+    public CPF getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(CPF cpf) {
         this.cpf = cpf;
+    }
+
+    public String getNumeroCpf() {
+        return Optional.ofNullable(cpf)
+                .map(CPF::getNumero)
+                .orElse(null);
+    }
+
+    public void setNumeroCpf(String numeroCpf) {
+        this.cpf = new CPF(numeroCpf);
     }
 }

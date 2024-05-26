@@ -4,6 +4,7 @@ import com.postech.adaptador.condutor.api.dto.ClienteDTO;
 import com.postech.adaptador.condutor.api.entidade.ClienteEntidade;
 import com.postech.nucleo.dominio.modelo.Cliente;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -13,8 +14,10 @@ public interface MapeadorCliente {
 
     MapeadorCliente INSTANCIA = Mappers.getMapper(MapeadorCliente.class);
 
+    @Mapping(target = "cpf", source = "cliente.cpf.numero")
     ClienteEntidade paraEntidade(Cliente cliente);
 
+    @Mapping(target = "cpf.numero", source = "clienteEntidade.cpf")
     Cliente paraDominio(ClienteEntidade clienteEntidade);
 
     Cliente paraDominio(ClienteDTO clienteDTO);

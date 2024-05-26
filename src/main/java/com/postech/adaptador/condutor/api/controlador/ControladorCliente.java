@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Cliente", description = "Recursos relacionados ao cliente")
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("/clientes")
 public class ControladorCliente {
 
     private final ClienteServico clienteServico;
@@ -34,7 +34,7 @@ public class ControladorCliente {
             @ApiResponse(description = "Cliente cadastrado com sucesso", responseCode = "201", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Cliente.class))),
             @ApiResponse(responseCode = "400", description = "Erro ao cadastrar cliente", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
     })
-    @PostMapping( value = "cadastrarCliente", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping( value = "cliente", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> cadastrarCliente(@RequestBody ClienteDTO cliente) {
         return ResponseHandler.responseBuilder("Cliente cadastrado com sucesso", HttpStatus.OK, clienteServico.cadastrarCliente(cliente));
@@ -46,7 +46,7 @@ public class ControladorCliente {
             @ApiResponse(description = "Erro ao consultar cliente", responseCode = "400",  content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
             @ApiResponse(description = "Cliente não foi encontrado", responseCode = "404",  content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
     })
-    @GetMapping(value = "/consultarClientePorCPF", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/cliente", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> consultarCliente(@RequestParam(value = "cpf") String cpf) {
         return ResponseHandler.responseBuilder("Cliente encontrado com sucesso", HttpStatus.OK, clienteServico.buscarClientePorCPF(cpf));
     }

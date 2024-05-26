@@ -20,5 +20,5 @@ public class ClienteDTO {
     private String email;
 
     @NotBlank
-    private String cpf;
+    private CpfDTO cpf;
 }
