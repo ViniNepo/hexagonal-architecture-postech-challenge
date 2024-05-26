@@ -15,9 +15,12 @@ public interface MapeadorPedidoProduto {
 
     MapeadorPedidoProduto INSTANCIA = Mappers.getMapper(MapeadorPedidoProduto.class);
 
+    @Mapping(target = "pedido.cliente.cpf", source = "pedidoProduto.pedido.cliente.cpf.numero")
     @Mapping(target = "pedido.pedidosProdutos", ignore = true)
-    PedidoProdutoEntidade paraEntidade(PedidoProduto pedido);
+    PedidoProdutoEntidade paraEntidade(PedidoProduto pedidoProduto);
 
+
+    @Mapping(target = "pedido.cliente.cpf.numero", source = "pedidoProdutoEntidade.pedido.cliente.cpf")
     @Mapping(target = "pedido.pedidosProdutos", ignore = true)
     PedidoProduto paraDominio(PedidoProdutoEntidade pedidoProdutoEntidade);
 
@@ -32,6 +35,7 @@ public interface MapeadorPedidoProduto {
     List<PedidoProduto> paraDominioListaEntidade(List<PedidoProdutoEntidade> pedidosProdutosEntidade);
 
     List<PedidoProduto> paraDominioListaDTO(List<PedidoProdutoDTO> pedidosProdutosDTO);
+
     List<PedidoProdutoDTO> paraDTOLista(List<PedidoProduto> pedidosProdutos);
 
 }
