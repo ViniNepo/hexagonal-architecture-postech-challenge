@@ -21,46 +21,33 @@ public class Cliente implements AgregacaoInterface {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
-
         validaEntidade();
-        cpf.validar();
+
     }
 
     public void validaEntidade() throws DominioExcecao {
         PreocupacaoAssercao.validaArgumentoNaoVazio(nome, "O nome não pode estar vazio!");
         PreocupacaoAssercao.validaArgumentoNaoVazio(email, "O email não pode estar vazio!");
+        if(!cpf.validar()){
+            throw new DominioExcecao("O cpf informado é inválido");
+        }
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public CPF getCpf() {
         return cpf;
-    }
-
-    public void setCpf(CPF cpf) {
-        this.cpf = cpf;
     }
 
     public String getNumeroCpf() {
@@ -69,7 +56,4 @@ public class Cliente implements AgregacaoInterface {
                 .orElse(null);
     }
 
-    public void setNumeroCpf(String numeroCpf) {
-        this.cpf = new CPF(numeroCpf);
-    }
 }

@@ -38,7 +38,7 @@ public class ControladorPedido {
     @Operation(summary = "Criar pedido", method = "POST", description = "Recurso para criar um pedido")
     @ApiResponses(value = {
             @ApiResponse(description = "Pedido criado com sucesso", responseCode = "201", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class))),
-            @ApiResponse(responseCode = "422", description = "Erro ao criar pedido", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
+            @ApiResponse(responseCode = "400", description = "Erro ao criar pedido", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
     })
     @PostMapping(value = "pedido", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -48,18 +48,19 @@ public class ControladorPedido {
 
     @Operation(summary = "Pegar pedido", method = "GET", description = "Recurso para pegar um pedido")
     @ApiResponses(value = {
-            @ApiResponse(description = "Pedido criado com sucesso", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class))),
-            @ApiResponse(responseCode = "404", description = "Erro ao procurar pedido pelo ID", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
+            @ApiResponse(description = "Pedido encontrado", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class))),
+            @ApiResponse(responseCode = "404", description = "Pedido não foi encontrado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
     })
     @GetMapping(value = "/{id}/pedido", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> pegarPedidoPorId(@PathVariable Long id) {
         return ResponseHandler.responseBuilder("Pedido encontrado com sucesso", HttpStatus.OK, pedidoServico.pegaPedidoPorId(id));
     }
 
+
     @Operation(summary = "Notifica pedido", method = "GET", description = "Recurso para notificar um pedido")
     @ApiResponses(value = {
-            @ApiResponse(description = "Pedido criado com sucesso", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class))),
-            @ApiResponse(responseCode = "404", description = "Erro ao notificar um pedido pelo ID", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
+            @ApiResponse(description = "Notificação estado pedido realizada com sucesso", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class))),
+            @ApiResponse(responseCode = "404", description = "Pedido não foi encontrado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
     })
     @GetMapping(value = "/{id}/notificar-estado-pedido", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> notificarPedidoEstado(@PathVariable Long id) {
@@ -78,7 +79,8 @@ public class ControladorPedido {
     @Operation(summary = "Atualizar estado do pedido", method = "PUT", description = "Recurso para atualizar estado de um pedido")
     @ApiResponses(value = {
             @ApiResponse(description = "Pedido criado com sucesso", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class))),
-            @ApiResponse(responseCode = "422", description = "Erro atualizar o estado do pedido", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
+            @ApiResponse(responseCode = "404", description = "Pedido não foi encontrado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
+            @ApiResponse(responseCode = "400", description = "Erro ao atualizar estado do pedido", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
     })
     @PutMapping(value = "/{id}/estado-pedido", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> atualizarEstadoPedidoPorId(@PathVariable Long id, @RequestParam EstadoPedidoEnum estado) {
@@ -89,7 +91,7 @@ public class ControladorPedido {
     @Operation(summary = "Realiza o fake checkout do pedido", method = "PUT", description = "Recurso para realizar fake checkout do pedido")
     @ApiResponses(value = {
             @ApiResponse(description = "Pedido criado com sucesso", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class))),
-            @ApiResponse(responseCode = "422", description = "Erro fazer o fake checkout do pedido", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
+            @ApiResponse(responseCode = "404", description = "Erro ao fazer o fake checkout do pedido", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
     })
     @PutMapping(value = "/{id}/fake-Checkout", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> fakeCheckoutPorID(@PathVariable Long id) {
@@ -99,8 +101,8 @@ public class ControladorPedido {
 
     @Operation(summary = "Realiza deleção do pedido", method = "DELETE", description = "Recurso para deletar um pedido")
     @ApiResponses(value = {
-            @ApiResponse(description = "Pedido criado com sucesso", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class))),
-            @ApiResponse(responseCode = "422", description = "Erro realizar o delete do pedido", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
+            @ApiResponse(description = "Pedido deletado com sucesso", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class))),
+            @ApiResponse(responseCode = "404", description = "Erro ao realizar exclusão do pedido", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiRespostaDTO.class))),
     })
     @DeleteMapping("/{id}/pedido")
     public ResponseEntity<Object> deletarPedido(@PathVariable Long id) {

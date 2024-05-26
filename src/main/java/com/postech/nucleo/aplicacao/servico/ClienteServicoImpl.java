@@ -25,8 +25,7 @@ public class ClienteServicoImpl implements ClienteServico {
     public ClienteDTO cadastrarCliente(ClienteDTO clienteDTO) {
         Cliente cliente = MapeadorCliente.INSTANCIA.paraDominio(clienteDTO);
         ClienteEntidade clienteEntidade = MapeadorCliente.INSTANCIA.paraEntidade(cliente);
-
-        ClienteEntidade clienteSalvo = clientRepository.cadastrarCliente(clienteEntidade);
+        ClienteEntidade clienteSalvo  = clientRepository.cadastrarCliente(clienteEntidade);
         Cliente clienteDominio = MapeadorCliente.INSTANCIA.paraDominio(clienteSalvo);
         return MapeadorCliente.INSTANCIA.paraDTO(clienteDominio);
     }
