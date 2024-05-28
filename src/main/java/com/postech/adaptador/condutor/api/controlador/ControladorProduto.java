@@ -56,6 +56,7 @@ public class ControladorProduto {
     @Operation(summary = "Lista todos os produtos", method = "GET", description = "Recurso para listar todos os produtos. A consulta pode ser filtrada por categoria caso necessário.")
     @ApiResponses(value = {
             @ApiResponse(description = "Produtos encontrados com sucesso", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Produto.class))),
+            @ApiResponse(responseCode = "400", description = "Erro na consulta", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroDTO.class))),
             @ApiResponse(responseCode = "404", description = "Produtos não foram encontrados", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroDTO.class))),
     })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -66,6 +67,7 @@ public class ControladorProduto {
     @Operation(summary = "Consulta produto por ID", method = "GET", description = "Recurso para csonsultar produto por ID")
     @ApiResponses(value = {
             @ApiResponse(description = "Produto encontrado com sucesso", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Produto.class))),
+            @ApiResponse(responseCode = "400", description = "Erro na consulta", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroDTO.class))),
             @ApiResponse(responseCode = "404", description = "Produto não encontrado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroDTO.class))),
     })
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -76,16 +78,18 @@ public class ControladorProduto {
     @Operation(summary = "Consultar produto por categoria", method = "GET", description = "Recurso para consultar produto por categoria")
     @ApiResponses(value = {
             @ApiResponse(description = "Produtos pela categoria informada encontrados com sucesso", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Produto.class))),
+            @ApiResponse(responseCode = "400", description = "Erro na consulta", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroDTO.class))),
             @ApiResponse(responseCode = "404", description = "Produtos não foram encontrados pela categoria informada", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroDTO.class))),
     })
     @GetMapping(value = "/categoria", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Object> pegarTodosPorCategoria(@RequestParam CategoriaProdutoEnum categoria) {
+    ResponseEntity<Object> consultaTodosPorCategoria(@RequestParam CategoriaProdutoEnum categoria) {
         return ResponseEntity.ok().body(produtoServico.consultaProdutosPorCategoria(categoria));
     }
 
     @Operation(summary = "Deleta produto por ID", method = "DELETE", description = "Recurso para deletar um produto por ID")
     @ApiResponses(value = {
-            @ApiResponse(description = "Produto deletado com sucesso", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Produto.class))),
+            @ApiResponse(description = "Produto deletado com sucesso", responseCode = "204", content = @Content),
+            @ApiResponse(responseCode = "400", description = "Erro ao deletar produto", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroDTO.class))),
             @ApiResponse(responseCode = "404", description = "Produto não encontrado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroDTO.class))),
     })
     @DeleteMapping(value = "/{id}")
