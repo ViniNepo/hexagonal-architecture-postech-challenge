@@ -33,3 +33,7 @@ Rota para acessar Swagger.yml
 ```url
 http://localhost:8080/lanchonete/v1/api-docs
 ```
+Dentro do Projeto no diretório "postman" há um arquivo com uma collection postman com todas as rotas mapeadas para teste
+```
+./postman/Pos_Tech-Arquitetura_Hexagonal-Lanchonete
+```
