@@ -1,6 +1,6 @@
 package com.postech.adaptador.condutor.api.configuracao;
 
-import com.postech.adaptador.condutor.api.tratador.ResponseHandler;
+import com.postech.adaptador.condutor.api.dto.ErroDTO;
 import com.postech.nucleo.dominio.base.DominioExcecao;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +14,6 @@ public class DominioExcecaoAdvice {
     @ExceptionHandler(DominioExcecao.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     ResponseEntity<Object> dominioExcecaoHandler(DominioExcecao excecao){
-        return ResponseHandler.responseBuilder(excecao.getMessage(), HttpStatus.BAD_REQUEST, null);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErroDTO("ERRO_DOMINIO", excecao.getMessage()));
     }
 }

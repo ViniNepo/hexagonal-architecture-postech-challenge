@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface SpringClienteRepositorio extends JpaRepository<ClienteEntidade, Long> {
 
     Optional<ClienteEntidade> getClienteEntidadeByCpf(String cpf);
+    Optional<ClienteEntidade> getClienteEntidadeById(Long id);
 }

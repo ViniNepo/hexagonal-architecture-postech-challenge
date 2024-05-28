@@ -1,8 +1,9 @@
 package com.postech.adaptador.conduzido.infra;
 
 import com.postech.adaptador.condutor.api.entidade.ProdutoEntidade;
-import com.postech.nucleo.dominio.base.ProdutoNaoEncontradoExcecao;
+import com.postech.nucleo.dominio.base.ProdutoExcecao;
 import com.postech.nucleo.dominio.enums.CategoriaProdutoEnum;
+import com.postech.nucleo.dominio.enums.ErroProdutoEnum;
 import com.postech.nucleo.dominio.repositorio.ProdutoRepositorio;
 import org.springframework.stereotype.Component;
 
@@ -18,19 +19,26 @@ public class ProdutoRepositorioImpl implements ProdutoRepositorio {
     }
 
     @Override
-    public ProdutoEntidade pegaProdutoPorId(Long id) {
-        return springProdutoRepositorio.getReferenceById(id);
+    public ProdutoEntidade consultaProdutoPorId(Long id) {
+        var produto = springProdutoRepositorio.getProdutoEntidadeById(id);
+
+        if (produto.isEmpty()) {
+            throw new ProdutoExcecao(ErroProdutoEnum.PRODUTO_NAO_ENCONTRADO);
+        }
+
+        return produto.get();
     }
 
     @Override
-    public List<ProdutoEntidade> pegaTodosProdutos() {
-        return springProdutoRepositorio.findAll();
+    public List<ProdutoEntidade> consultaTodosProdutos(CategoriaProdutoEnum produtoCategoria) {
+        return springProdutoRepositorio.getProdutoEntidade(produtoCategoria)
+                .orElseThrow(() -> new ProdutoExcecao(ErroProdutoEnum.PRODUTOS_NAO_ENCONTRADOS));
     }
 
     @Override
-    public List<ProdutoEntidade> pegaProdutosPorCategoria(CategoriaProdutoEnum produtoCategoria) {
+    public List<ProdutoEntidade> consultaProdutosPorCategoria(CategoriaProdutoEnum produtoCategoria) {
         return springProdutoRepositorio.getProdutoEntidadeByCategoria(produtoCategoria)
-                .orElseThrow(() -> new ProdutoNaoEncontradoExcecao("Não foi encontrado produtos que correspondem a categoria informada"));
+                .orElseThrow(() -> new ProdutoExcecao(ErroProdutoEnum.PRODUTO_NAO_ENCONTRADO));
     }
 
     @Override

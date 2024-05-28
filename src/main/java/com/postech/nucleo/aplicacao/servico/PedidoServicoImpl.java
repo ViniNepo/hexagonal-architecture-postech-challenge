@@ -1,21 +1,22 @@
 package com.postech.nucleo.aplicacao.servico;
 
 import com.postech.adaptador.condutor.api.dto.PedidoDTO;
-import com.postech.adaptador.condutor.api.entidade.ClienteEntidade;
+import com.postech.adaptador.condutor.api.dto.entrada.PedidoEntradaDTO;
+import com.postech.adaptador.condutor.api.dto.entrada.PedidoProdutoEntradaDTO;
 import com.postech.adaptador.condutor.api.entidade.PedidoEntidade;
-import com.postech.adaptador.condutor.api.entidade.ProdutoEntidade;
+import com.postech.adaptador.condutor.api.mapeador.MapeadorCliente;
 import com.postech.adaptador.condutor.api.mapeador.MapeadorPedido;
 import com.postech.adaptador.condutor.api.mapeador.MapeadorProduto;
-import com.postech.nucleo.dominio.base.PedidoEstadoExcecao;
-import com.postech.nucleo.dominio.base.PedidoException;
-import com.postech.nucleo.dominio.base.PedidoNaoEncontradoExcecao;
+import com.postech.nucleo.dominio.base.PedidoExcecao;
+import com.postech.nucleo.dominio.enums.ErroPedidoEnum;
+import com.postech.nucleo.dominio.enums.EstadoPedidoEnum;
+import com.postech.nucleo.dominio.modelo.Pedido;
 import com.postech.nucleo.dominio.modelo.PedidoProduto;
 import com.postech.nucleo.dominio.repositorio.ClienteRepositorio;
 import com.postech.nucleo.dominio.repositorio.PedidoRepositorio;
-import com.postech.nucleo.dominio.enums.EstadoPedidoEnum;
-import com.postech.nucleo.dominio.modelo.Pedido;
 import com.postech.nucleo.dominio.repositorio.ProdutoRepositorio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PedidoServicoImpl implements PedidoServico {
@@ -33,46 +34,43 @@ public class PedidoServicoImpl implements PedidoServico {
     }
 
     @Override
-    public PedidoDTO pegaPedidoPorId(Long id) {
-        PedidoEntidade pedidoEntidade = pedidoRepositorio.pegaPedidoPorId(id);
+    public PedidoDTO consultaPedidoPorId(Long id) {
+        PedidoEntidade pedidoEntidade = pedidoRepositorio.consultaPedidoPorId(id);
 
-        if(pedidoEntidade == null){
-            throw new PedidoNaoEncontradoExcecao("Pedido com o ID informado não foi encontrado");
+        if (pedidoEntidade == null) {
+            throw new PedidoExcecao(ErroPedidoEnum.PEDIDO_NAO_ENCONTRADO);
         }
 
         return MapeadorPedido.INSTANCIA.paraDto(MapeadorPedido.INSTANCIA.paraDominio(pedidoEntidade));
     }
 
     @Override
-    public PedidoDTO criaPedido(PedidoDTO pedidoDTO) {
+    public PedidoDTO criaPedido(PedidoEntradaDTO pedidoDTO) {
 
-        Pedido pedido = MapeadorPedido.INSTANCIA.paraDominio(pedidoDTO);
+        var cliente = clienteRepositorio.buscarClientePorId(pedidoDTO.getClienteId());
+        var listaProdutos = new ArrayList<PedidoProduto>();
 
-        for (PedidoProduto pedidoProduto : pedido.getPedidosProdutos()) {
-            ProdutoEntidade produtoEntidade = produtoRepository.pegaProdutoPorId(pedidoProduto.getProduto().getId());
-            pedidoProduto.setProduto(MapeadorProduto.INSTANCIA.paraDominio(produtoEntidade));
-            pedidoProduto.setPedido(pedido);
+        Pedido pedido = new Pedido(null, MapeadorCliente.INSTANCIA.paraDominio(cliente), EstadoPedidoEnum.PENDENTE_PAGAMENTO, null);
+
+        Pedido pedidoSalvo = MapeadorPedido.INSTANCIA.paraDominio(pedidoRepositorio.salvaPedido(MapeadorPedido.INSTANCIA.paraEntidade(pedido)));
+
+        for (PedidoProdutoEntradaDTO produto : pedidoDTO.getPedidosProdutos()) {
+            var produtoEntidade = produtoRepository.consultaProdutoPorId(produto.getProdutoId());
+            listaProdutos.add(new PedidoProduto(null, pedidoSalvo, MapeadorProduto.INSTANCIA.paraDominio(produtoEntidade), produto.getQuantidade()));
         }
 
-        PedidoEntidade pedidoEntidade = MapeadorPedido.INSTANCIA.paraEntidade(pedido);
+        pedidoSalvo.setPedidosProdutos(listaProdutos);
+        Pedido pedidoSalvoComProdutos = MapeadorPedido.INSTANCIA.paraDominio(pedidoRepositorio.salvaPedido(MapeadorPedido.INSTANCIA.paraEntidade(pedidoSalvo)));
 
-        ClienteEntidade clienteEntidade = clienteRepositorio.buscarClientePorId(pedidoEntidade.getCliente().getId());
-
-        pedidoEntidade.setCliente(clienteEntidade);
-
-        pedidoEntidade.getPedidosProdutos().forEach(x -> x.setPedido(pedidoEntidade));
-
-        Pedido pedidoSalvo = MapeadorPedido.INSTANCIA.paraDominio(pedidoRepositorio.salvaPedido(pedidoEntidade));
-
-        return MapeadorPedido.INSTANCIA.paraDto(pedidoSalvo);
+        return MapeadorPedido.INSTANCIA.paraDto(pedidoSalvoComProdutos);
     }
 
     @Override
     public PedidoDTO atualizaEstadoPedidoPorId(Long id, EstadoPedidoEnum estado) {
-        PedidoDTO pedidoDTO = this.pegaPedidoPorId(id);
+        PedidoDTO pedidoDTO = this.consultaPedidoPorId(id);
 
-        if(!isTransicaoEstadoValida(pedidoDTO.getEstado(), estado)){
-            throw new PedidoEstadoExcecao("Não foi possivel realizar a transição de estado para o novo estado informado");
+        if (!isTransicaoEstadoValida(pedidoDTO.getEstado(), estado)) {
+            throw new PedidoExcecao(ErroPedidoEnum.ESTADO_INVALIDO);
         }
 
         pedidoDTO.setEstado(estado);
@@ -86,6 +84,7 @@ public class PedidoServicoImpl implements PedidoServico {
 
     /**
      * Este método verifica se a transição de estado informada é permitida
+     *
      * @param estadoAtual
      * @param novoEstado
      * @return
@@ -97,22 +96,23 @@ public class PedidoServicoImpl implements PedidoServico {
             case RECEBIDO -> novoEstado == EstadoPedidoEnum.PREPARANDO || novoEstado == EstadoPedidoEnum.CANCELADO;
             case PREPARANDO -> novoEstado == EstadoPedidoEnum.PRONTO || novoEstado == EstadoPedidoEnum.CANCELADO;
             case PRONTO -> novoEstado == EstadoPedidoEnum.FINALIZADO || novoEstado == EstadoPedidoEnum.CANCELADO;
-            case FINALIZADO, CANCELADO -> throw new PedidoEstadoExcecao("Não é possível alterar o estado do pedido Finalizado ou Cancelado"); // Não pode mudar de FINALIZADO ou CANCELADO
+            case FINALIZADO, CANCELADO ->
+                    throw new PedidoExcecao(ErroPedidoEnum.ESTADO_INVALIDO); // Não pode mudar de FINALIZADO ou CANCELADO
         };
     }
 
     @Override
     public EstadoPedidoEnum notificaEstadoPedido(Long id) {
-        PedidoDTO pedido = this.pegaPedidoPorId(id);
+        PedidoDTO pedido = this.consultaPedidoPorId(id);
         return pedido.getEstado();
     }
 
     @Override
-    public List<PedidoDTO> pegaTodosProdutos() {
+    public List<PedidoDTO> consultaTodosPedidos() {
         List<PedidoEntidade> pedidoEntidades = pedidoRepositorio.pegaTodosProdutos();
 
-        if(pedidoEntidades.isEmpty()){
-            throw new PedidoNaoEncontradoExcecao("Nenhum pedido foi encontrado");
+        if (pedidoEntidades.isEmpty()) {
+            throw new PedidoExcecao(ErroPedidoEnum.PEDIDOS_NAO_ECONTRADOS);
         }
 
         List<Pedido> pedidos = MapeadorPedido.INSTANCIA.paraDominioListaEntidade(pedidoEntidades);
@@ -129,8 +129,8 @@ public class PedidoServicoImpl implements PedidoServico {
 
     @Override
     public void deletarPedido(Long id) {
+        pedidoRepositorio.consultaPedidoPorId(id);
         pedidoRepositorio.deletaPedido(id);
     }
-
 
 }

@@ -1,20 +1,19 @@
 package com.postech.adaptador.condutor.api.configuracao;
 
 
-import com.postech.adaptador.condutor.api.tratador.ResponseHandler;
-import com.postech.nucleo.dominio.base.PedidoNaoEncontradoExcecao;
+import com.postech.adaptador.condutor.api.dto.ErroDTO;
+import com.postech.nucleo.dominio.base.PedidoExcecao;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class PedidoExcecaoAdvice {
 
-    @ExceptionHandler(value = {PedidoNaoEncontradoExcecao.class})
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    ResponseEntity<Object> pedidoNaoEncontradoExcecaoHandler(PedidoNaoEncontradoExcecao pedidoNaoEncontradoExececao){
-        return ResponseHandler.responseBuilder(pedidoNaoEncontradoExececao.getMessage(), HttpStatus.NOT_FOUND, null);
+    @ExceptionHandler(value = {PedidoExcecao.class})
+    ResponseEntity<Object> produtoExcecaoHandler(PedidoExcecao excecao) {
+        return ResponseEntity.status(HttpStatus.valueOf(excecao.getErro().getHttpStatusCode())).body(new ErroDTO(excecao.getErro().name(), excecao.getErro().getDetalhe()));
     }
+
 }
