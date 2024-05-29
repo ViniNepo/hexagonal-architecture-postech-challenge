@@ -6,9 +6,9 @@ import com.postech.nucleo.dominio.enums.CategoriaProdutoEnum;
 import java.util.List;
 
 public interface ProdutoRepositorio {
-    ProdutoEntidade pegaProdutoPorId(Long id);
-    List<ProdutoEntidade> pegaTodosProdutos();
-    List<ProdutoEntidade> pegaProdutosPorCategoria(CategoriaProdutoEnum produtoCategoria);
+    ProdutoEntidade consultaProdutoPorId(Long id);
+    List<ProdutoEntidade> consultaTodosProdutos(CategoriaProdutoEnum produtoCategoria);
+    List<ProdutoEntidade> consultaProdutosPorCategoria(CategoriaProdutoEnum produtoCategoria);
     ProdutoEntidade criaNovoProduto(ProdutoEntidade produto);
     ProdutoEntidade salvaProduto(ProdutoEntidade produto);
     void deletaProdutoPorId(Long id);

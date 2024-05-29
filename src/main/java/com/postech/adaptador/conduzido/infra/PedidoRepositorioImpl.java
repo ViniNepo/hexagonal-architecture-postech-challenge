@@ -1,6 +1,8 @@
 package com.postech.adaptador.conduzido.infra;
 
 import com.postech.adaptador.condutor.api.entidade.PedidoEntidade;
+import com.postech.nucleo.dominio.base.PedidoExcecao;
+import com.postech.nucleo.dominio.enums.ErroPedidoEnum;
 import com.postech.nucleo.dominio.repositorio.PedidoRepositorio;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +18,15 @@ public class PedidoRepositorioImpl implements PedidoRepositorio {
     }
 
     @Override
-    public PedidoEntidade pegaPedidoPorId(Long id) {
-        return springPedidoRepositorio.getReferenceById(id);
+    public PedidoEntidade consultaPedidoPorId(Long id) {
+
+        var pedido = springPedidoRepositorio.getPedidoEntidadeById(id);
+
+        if (pedido.isEmpty()) {
+            throw new PedidoExcecao(ErroPedidoEnum.PEDIDO_NAO_ENCONTRADO);
+        }
+
+        return pedido.get();
     }
 
     @Override

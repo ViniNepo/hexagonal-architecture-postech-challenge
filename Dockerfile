@@ -7,9 +7,6 @@ COPY src src
 
 RUN mvn package -DskipTests
 
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} application.jar
-
 FROM openjdk:17-jdk-alpine
 
 WORKDIR /app
