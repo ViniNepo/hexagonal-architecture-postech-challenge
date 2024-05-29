@@ -75,7 +75,7 @@ public class ControladorPedido {
     @Operation(summary = "Atualizar estado do pedido", method = "PATCH", description = "Recurso para atualizar estado de um pedido, o estado só pode ser alterado respeitando a seguinte ordem " +
             "[1 - PENDENTE_PAGAMENTO | 2 - PAGO | 3 - RECEBIDO | 4 - PREPARANDO | 5 - PRONTO | 6 - FINALIZADO | 7 - CANCELADO]. A partir de qualquer estado será possível alterar para o estado CANCELADO, com excessão do estado FINALIZADO.")
     @ApiResponses(value = {
-            @ApiResponse(description = "Pedido criado com sucesso", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class))),
+            @ApiResponse(description = "Pedido atualizado com sucesso", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class))),
             @ApiResponse(responseCode = "404", description = "Pedido não foi encontrado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroDTO.class))),
             @ApiResponse(responseCode = "400", description = "Erro ao atualizar estado do pedido", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroDTO.class))),
     })
@@ -86,7 +86,7 @@ public class ControladorPedido {
 
     @Operation(summary = "Realiza o fake checkout do pedido", method = "PATCH", description = "Recurso para realizar fake checkout do pedido, atualiza o pedido de PENDENTE_PAGAMENTO para PAGO e depois RECEBIDO")
     @ApiResponses(value = {
-            @ApiResponse(description = "Pedido criado com sucesso", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class))),
+            @ApiResponse(description = "Realizado fake checkout com sucesso", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class))),
             @ApiResponse(responseCode = "400", description = "Erro ao fazer o fake checkout do pedido", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroDTO.class))),
             @ApiResponse(responseCode = "404", description = "Algum recurso informado não foi encontrado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroDTO.class))),
     })
