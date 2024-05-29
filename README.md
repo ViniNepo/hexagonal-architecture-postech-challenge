@@ -13,7 +13,7 @@ O sistema tem como intuito fornecer o controle de pedidos para atender os client
 https://miro.com/app/board/uXjVKSt4Gq8=/?share_link_id=968579577663
 ```
 
-## Como rodar instâncias de aplicação e Postgre
+## Como rodar instâncias de aplicação e Postgres
 
 1 - Clonar o projeto
 ```bash
